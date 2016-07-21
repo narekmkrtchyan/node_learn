@@ -1,0 +1,53 @@
+body {
+	padding-bottom: 25px;
+	padding-top: 25px;
+}
+
+
+
+#send_section {
+	position: relative;
+    bottom: -36px;
+}
+
+#send_section .form-control {
+	width: 250px;
+	display: inline-block;
+}
+
+.container_chat{
+	border:1px solid black;
+	height: 100%;
+}
+.chat {
+	border:1px solid black;
+	margin-top:7px;
+	margin-bottom: 7px;
+	height: 95%;
+}
+h3{
+	text-align: center;
+}
+.img_chat{
+	
+	width: 175px;
+    margin-top: 7px;
+}
+.chat_area{
+	overflow-x: auto;
+	padding: 22px; 
+	border:1px solid black;
+	height:75%;
+	margin-bottom: 6px;
+}
+#messige{
+	    margin-bottom: 6px;
+}
+.user_info{
+	margin-top: 11px;
+}
+
+#sign_in_form input {
+	margin-bottom: 15px;
+
+}
