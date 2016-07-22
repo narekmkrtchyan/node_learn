@@ -1,6 +1,6 @@
 module.exports.post = function(req, res) {
   console.log(req.body);
-  var validation = require('./libs/validation.js');
+  var validation = require('../libs/validation.js');
   var result = validation(req.body.email,req.body.password);
   if (result == 'all') {
     res.send({msg: 'erkusnel chisht en'});
