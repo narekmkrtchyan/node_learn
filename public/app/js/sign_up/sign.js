@@ -14,3 +14,25 @@ $('#sign_in').click(function(a){
   })
   return false;
 })
+$('#register').click(function(a){
+  var emaile = $('.your_emaile').val();
+  var password = $('.password').val();
+  var confirm_password = $('.confirm_password').val();
+  var your_name = $('.your_name').val();
+  var username = $('.username').val();
+  //console.log(emaile," ",password," ",confirm_password," ",your_name," ",username);
+  $.ajax({
+    method: "post",
+    url: "/sign",
+    data: {
+      emaile:           emaile,
+      password:         password,
+      confirm_password: confirm_password,
+      your_name:        your_name,
+      username:         username
+    }
+  })
+  .done(function(data){
+    alert(data.msg);
+  })
+})
