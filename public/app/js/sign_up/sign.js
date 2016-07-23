@@ -1,14 +1,14 @@
 $('#sign_up').click(function(c){
-  $("#div_login").fadeOut(3000,function(){
-    $( "#div_registr" ).fadeIn( 3000, function(){
+  $("#div_login").fadeOut(300,function(){
+    $( "#div_registr" ).fadeIn( 300, function(){
 
     })
   })
   return false;
 })
 $('#sign_in').click(function(a){
-  $( "#div_registr" ).fadeOut( 3000, function() {  
-    $("#div_login").fadeIn(3000,function(){
+  $( "#div_registr" ).fadeOut( 300, function() {  
+    $("#div_login").fadeIn(300,function(){
 
     })
   })
@@ -32,7 +32,11 @@ $('#register').click(function(a){
       username:         username
     }
   })
-  .done(function(data){
-    alert(data.msg);
+  .done(function(data) {
+    if (data.msg) {
+      console.log(data.msg);
+    } else {
+      console.log(data.error);
+    }
   })
 })

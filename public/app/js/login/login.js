@@ -14,9 +14,9 @@ $('#login_button').click(function(e) {
        $('#user_email').val('');
        $('#user_password').val('');
        if (data.msg) {
-        console.log( data.msg );
+        console.log(data.msg);
        } else {
-        console.log('%c Dzer bolor tvyalner@ sxal en', 'color: red');
+        console.log(data.error);
        }
     });
   } else {
