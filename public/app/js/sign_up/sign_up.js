@@ -1,29 +1,23 @@
-function sign_up(){
-  $('#sign_up').click(function(c){
+(function() {
+
+  $('#sign_up').click(function(e){
     $("#div_login").fadeOut(300,function(){
-      $( "#div_registr" ).fadeIn( 300, function(){
-
-      })
+      $( "#div_registr" ).fadeIn(300);
     })
     return false;
   });
-  $('#sign_in').click(function(a){
-    $( "#div_registr" ).fadeOut( 300, function() {  
-      $("#div_login").fadeIn(300,function(){
+  
+  $('#register').click(function(e) {
 
-      })
-    })
-    return false;
-  });
-  $('#register').click(function(a){
-    var email = $('.loginemail').val();
-    var password = $('.password').val();
-    var confirm_password = $('.confirm_password').val();
-    var name = $('.name').val();
-    var nikname = $('.nikname').val();
+    var email             = $('.loginemail').val();
+    var password          = $('.password').val();
+    var confirm_password  = $('.confirm_password').val();
+    var name              = $('.name').val();
+    var nikname           = $('.nikname').val();
+
     $.ajax({
       method: "post",
-      url: "/sign",
+      url: "/sign_up",
       data: {
         email:            email,
         password:         password,
@@ -38,8 +32,6 @@ function sign_up(){
       } else {
         console.log(data.error);
       }
-    })
+    });
   })
-}
-
-sign_up();
+})();

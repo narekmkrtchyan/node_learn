@@ -1,6 +1,7 @@
 const User = require('../models/user').User;
 
 module.exports.post = function(req, res) {
+
   console.log(req.body);
 
   var validation = require('../libs/validation/validation');
@@ -14,7 +15,7 @@ module.exports.post = function(req, res) {
     new_user.save(function(err) {
       if (err) return console.log(err);
       console.log('new user is a saved');
-      res.send({msg: 'sfgh'});
+      res.send({msg: 'user saved!'});
     });
   } else {
     res.send({error: result});

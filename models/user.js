@@ -1,5 +1,5 @@
 'use strict'
-const crypto 	= require('crypto');
+const crypto 	  = require('crypto');
 const mongoose 	= require('../libs/db/mongoose');
 
 let schemaUsers = mongoose.Schema({
@@ -11,7 +11,7 @@ let schemaUsers = mongoose.Schema({
     type: String,
     required: true,
   },
-  nukname: {
+  nikname: {
     type: String,
     required: true,
   },

@@ -1,8 +1,18 @@
-function sign_in(){
+(function() {
+
+  $('#sign_in').click(function(e){
+    $( "#div_registr" ).fadeOut( 300, function() {  
+      $("#div_login").fadeIn(300);
+    })
+    return false;
+  });
+  
   $('#login_button').click(function(e) {
-    var user_email = $('#user_email').val();
+
+    var user_email    = $('#user_email').val();
     var user_password = $('#user_password').val();
-    if (true) {
+
+    if (api.validation(user_email, user_password)) {
       $.ajax({
         method: "post",
         url: "/test",
@@ -12,8 +22,10 @@ function sign_in(){
         }
       })
       .done(function( data ) {
+
          $('#user_email').val('');
          $('#user_password').val('');
+
          if (data.msg) {
           console.log(data.msg);
          } else {
@@ -21,13 +33,15 @@ function sign_in(){
          }
       });
     } else {
+      // TODO: Create Error handler and errors ui
       alert('you write is incorrect')
     }
   });
 
   var api={
+
     validation: function(email, password) {
-      if (email_valid(email) && password.length > 5) {
+      if (this.email_valid(email) && password.length > 5) {
         return true;
       } else {
         return false;
@@ -39,6 +53,4 @@ function sign_in(){
       return re.test(email);
     }
   }
-}
-
-sign_in();
+})();

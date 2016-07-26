@@ -1,7 +1,8 @@
 module.exports = validation;
 function validation(email, password, confirm_password, name, nikname) {
+
   var args_length = arguments.length;
-  var valid_data = {};
+  var valid_data  = {};
 
   // email
   if (!email_valid(email)) {

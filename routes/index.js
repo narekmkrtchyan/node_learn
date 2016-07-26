@@ -7,6 +7,6 @@ module.exports = function(app) {
   app.post('/test', require('./sign_in').post);
 
   //sign up
-  app.post('/sign', require('./sign_up').post);
+  app.post('/sign_up', require('./sign_up').post);
     
 }
