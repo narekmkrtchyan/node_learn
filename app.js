@@ -3,6 +3,7 @@ const express         = require('express');
 const errorHandler    = require('errorhandler');
 const figlet          = require('figlet');
 const path            = require('path');
+const mongoose        = require('./libs/db/mongoose');
 const bodyParser      = require('body-parser');
 const cookieParser    = require('cookie-parser');
 const favicon         = require('serve-favicon');

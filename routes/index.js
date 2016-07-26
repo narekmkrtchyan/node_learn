@@ -1,10 +1,10 @@
 module.exports = function(app) {
 
   // main page
-  app.get('/', require('./main_page').get);
+  app.get('/', 		require('./main_page').get);
 
   // get time
-  app.get('/test', require('./get_time').get);
+  app.get('/test', 	require('./get_time').get);
   
   // login 
   app.post('/test', require('./sign_in').post);

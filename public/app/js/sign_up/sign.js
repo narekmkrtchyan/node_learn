@@ -5,7 +5,7 @@ $('#sign_up').click(function(c){
     })
   })
   return false;
-})
+});
 $('#sign_in').click(function(a){
   $( "#div_registr" ).fadeOut( 300, function() {  
     $("#div_login").fadeIn(300,function(){
@@ -13,7 +13,7 @@ $('#sign_in').click(function(a){
     })
   })
   return false;
-})
+});
 $('#register').click(function(a){
   var emaile = $('.your_emaile').val();
   var password = $('.password').val();
