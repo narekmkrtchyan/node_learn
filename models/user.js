@@ -3,17 +3,19 @@ const crypto 	= require('crypto');
 const mongoose 	= require('../libs/db/mongoose');
 
 let schemaUsers = mongoose.Schema({
-  your_name: {
+  name: {
     type: String,
+    required: true,
   },
   password: {
     type: String,
     required: true,
   },
-  username: {
+  nukname: {
     type: String,
+    required: true,
   },
-  emaile: {
+  email: {
     required: true,
     unique: true,
     type: String,

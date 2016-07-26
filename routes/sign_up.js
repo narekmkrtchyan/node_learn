@@ -3,12 +3,13 @@ const User = require('../models/user').User;
 module.exports.post = function(req, res) {
   console.log(req.body);
 
-  var validation = require('../libs/validation.js');
+  var validation = require('../libs/validation/validation');
   var data       = req.body;
-  var result = validation(data.emaile, data.password, data.confirm_password,
-                          data.your_name, data.username);
+  var result = validation(data.email, data.password, data.confirm_password,
+                          data.name, data.nikname);
 
   if (Object.keys(result).length == 0) {
+    console.log(data);
     var new_user = new User(data);
     new_user.save(function(err) {
       if (err) return console.log(err);

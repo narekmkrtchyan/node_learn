@@ -1,6 +1,6 @@
 module.exports = validation;
-function validation(email, password, confirm_password, nik_name, name) {
-  var arg_length = arguments.length;
+function validation(email, password, confirm_password, name, nikname) {
+  var args_length = arguments.length;
   var valid_data = {};
 
   // email
@@ -12,23 +12,23 @@ function validation(email, password, confirm_password, nik_name, name) {
     valid_data.password = false;
   }
 
-  if (arg_length == 2) {
+  if (args_length == 2) {
     return valid_data;
   } else {
-    if (arg_length == 5) {
+    if (args_length == 5) {
       // confirm_password
       if (password !== confirm_password) {
         valid_data.confirm_password = false;
       }
 
-      // nik_name
-      if (nik_name.length < 6) {
-        valid_data.nik_name = false;
-      }
-
       // name
       if (name.length < 6) {
         valid_data.name = false;
+      }
+
+      // nikname
+      if (nikname.length < 6) {
+        valid_data.nikname = false;
       }
 
       return valid_data;
