@@ -12,6 +12,7 @@ module.exports.post = function(req, res) {
   if (Object.keys(result).length == 0) {
     console.log(data);
     var new_user = new User(data);
+    // TODO: Stugi vor nuyn mail-ov mard chlini
     new_user.save(function(err) {
       if (err) return console.log(err);
       console.log('new user is a saved');

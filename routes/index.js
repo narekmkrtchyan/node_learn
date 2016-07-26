@@ -8,5 +8,8 @@ module.exports = function(app) {
 
   //sign up
   app.post('/sign_up', require('./sign_up').post);
+
+  // user account
+  app.get('/user', require('./user_account').get);
     
 }

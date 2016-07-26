@@ -27,9 +27,9 @@
          $('#user_password').val('');
 
          if (data.msg) {
-          console.log(data.msg);
+          window.location.href = '/user';
          } else {
-          console.log(data.error);
+          alert(data.error);
          }
       });
     } else {

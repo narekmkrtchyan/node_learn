@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title task-1
+    link(href='app/vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', type='text/css', href='app/css/chat.css')
+  body
+    .container.container_chat
+      .col-md-4.pull-left
+        img.img-responsive.img_chat(src='app/img/nkar.jpg')
+        div
+          p.user_info User Info
+          div
+            label(for='user_name')
+              | Name:
+            span#user_name
+              | #{user_name}
+          div
+            label(for='user_nikname')
+              | Nikname:
+            span#user_nikname
+              | #{user_nikname}
+          div
+            label(for='user_age')
+              | Age:
+            span#user_age
+              | #{user_age}
+      .col-md-8.chat.pull-right
+        h3 Chat
+        #area.chat_area
+        #send_section
+          input#messige.form-control(type='text', name='')
+          button.btn(onclick='myFunction()') Send
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script(src='app/vendor/bootstrap/js/bootstrap.min.js')
+    script(src='app/js/script.js')
