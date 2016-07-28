@@ -1,3 +1,4 @@
+
 body, html{
   height: 100%;
   background-repeat: no-repeat;
@@ -68,4 +69,36 @@ h3{
 #sign_up,#sign_in{
   display: block;
     margin: 0 auto;
+}
+
+
+#div_registr input:required:invalid, input:focus:invalid,
+#div_login input:required:invalid, input:focus:invalid {
+  background-image: url(http://s27.postimg.org/ttonbaj5b/invalid.png);
+  background-repeat: no-repeat;
+  
+}
+
+#div_registr input:required:valid,
+#div_login input:required:valid {
+  background-image: url(http://s14.postimg.org/gaechg2e5/valid.png);
+  background-repeat: no-repeat;
+  
+}
+
+#div_registr input:required:invalid, input:focus:invalid {
+  background-position: 205px center;
+}
+
+
+#div_registr input:required:valid {
+  background-position: 205px center;
+}
+
+#div_login input:required:invalid, input:focus:invalid {
+  background-position: 325px center;
+}
+
+#div_login input:required:valid {
+  background-position: 325px center;
 }

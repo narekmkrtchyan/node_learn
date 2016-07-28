@@ -10,30 +10,24 @@ html
   body
     .container.container_chat
       .col-md-4.pull-left
-        img.img-responsive.img_chat(src='app/img/nkar.jpg')
-        div
-          p.user_info User Info
+        h3.user_info User Info
+        .img_border
+          img.img-responsive.img_chat(src='app/img/nkar.jpg')
           div
-            label(for='user_name')
-              | Name:
-            span#user_name
-              | #{user_name}
+            label(for='user_name') Name:
+            span#user_name #{user_name}
           div
-            label(for='user_nikname')
-              | Nikname:
-            span#user_nikname
-              | #{user_nikname}
+            label(for='user_nikname') Nikname:
+            span#user_nikname #{user_nikname}
           div
-            label(for='user_age')
-              | Age:
-            span#user_age
-              | #{user_age}
+            label(for='user_age') Age:
+            span#user_age #{user_age}
       .col-md-8.chat.pull-right
-        h3 Chat
+        h3.chat_ss Chat
         #area.chat_area
         #send_section
-          input#messige.form-control(type='text', name='')
-          button.btn(onclick='myFunction()') Send
+          input#messige.form-control.pull-right(type='text', name='')
+          input#submit_msg.btn.ntn-lg.btn-primary.pull-right(type='submit',  name='Send')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
     script(src='app/vendor/bootstrap/js/bootstrap.min.js')
     script(src='app/js/script.js')

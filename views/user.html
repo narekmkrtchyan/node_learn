@@ -1,58 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>task-1</title>
-	    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	    <link rel="stylesheet" type="text/css" href="css/chat.css">
-	</head>
-	<body>
-		<div class="container container_chat" >
-			<div class=" col-md-4 pull-left">
-				<img src="img/nkar.jpg" class="img-responsive img_chat">
-				<div>
-					<p class="user_info">User Info</p>
-					<div>
-						<label for="user_name">
-							Name: 
-						</label>
-						<span id="user_name">
-							.....
-						</span>
-					</div>
-					<div>
-						<label for="user_nikname">
-							Nikname: 
-						</label>
-						<span id="user_nikname">
-							.....
-						</span>
-					</div>
-					<div>
-						<label for="user_age">
-							Age: 
-						</label>
-						<span id="user_age">
-							.....
-						</span>
-					</div>	
-				</div>
-			</div>
-			<div class="col-md-8 chat pull-right">
-				<h3>Chat</h3>
-				<div class="chat_area" id="area">
-					
-				</div>
-				<div id="send_section">
-					<input type="text" name="" id="messige" class="form-control">
-					<button class="btn" onclick="myFunction()">Send</button>
-				</div>
-			</div>
-		</div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	    <script src="js/script.js"></script>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>task-1</title>
+    <link href="app/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="app/css/chat.css">
+  </head>
+  <body>
+    <div class="container container_chat">
+      <div class="col-md-4 pull-left"><img src="app/img/nkar.jpg" class="img-responsive img_chat">
+        <div>
+          <p class="user_info">User Info</p>
+          <div>
+            <label for="user_name">Name:</label><span id="user_name"></span>
+          </div>
+          <div>
+            <label for="user_nikname">Nikname:</label><span id="user_nikname"></span>
+          </div>
+          <div>
+            <label for="user_age">Age:</label><span id="user_age"></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 chat pull-right">
+        <h3 class="pull-right">Chat</h3>
+        <div id="area" class="chat_area"></div>
+        <div id="send_section">
+          <input id="messige" type="text" name="" class="form-control pull-right">
+          <input type="submit" onclick="myFunction()" name="Send" class="btn ntn-lg btn-primary pull-right">
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="app/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="app/js/script.js"></script>
+  </body>
 </html>

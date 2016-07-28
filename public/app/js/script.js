@@ -1,10 +1,11 @@
-function myFunction(){
-	var x = document.getElementById("messige").value;
-	if(x!="null"){
-	 $( "#area" ).append( "<p>"+x+"<p>" );
-	 document.getElementById("messige").value=" ";
+$('#submit_msg').click(function(e){
+
+	var x =$("#messige").val()
+	if(x != ""){
+	 $( "#area" ).append( '<span class="messiges" >'+x+'</span>' );
+	 $("#messige").val("");
 	}
-}
+})
 
 $(document).ready(function($) {
 	var window_height = $(window).height();

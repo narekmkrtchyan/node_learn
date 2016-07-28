@@ -1,6 +1,5 @@
 'use strict';
 const express         = require('express');
-const errorHandler    = require('errorhandler');
 const figlet          = require('figlet');
 const path            = require('path');
 const mongoose        = require('./libs/db/mongoose');

@@ -6,16 +6,21 @@
     })
     return false;
   });
+  $('#user_email').click(function(e){
+    $('#user_email').css("borderColor","#fff");
+  })
+  $('#user_password').click(function(e){
+    $('#user_password').css("borderColor","#fff");
+  })
   
   $('#login_button').click(function(e) {
-
     var user_email    = $('#user_email').val();
     var user_password = $('#user_password').val();
 
     if (api.validation(user_email, user_password)) {
       $.ajax({
         method: "post",
-        url: "/test",
+        url: "/sign_in",
         data: { 
           email: user_email,
           password: user_password
@@ -25,7 +30,7 @@
 
          $('#user_email').val('');
          $('#user_password').val('');
-
+         //document.getElementById("user_email").style.borderColor = "none";
          if (data.msg) {
           window.location.href = '/user';
          } else {
@@ -34,7 +39,8 @@
       });
     } else {
       // TODO: Create Error handler and errors ui
-      alert('you write is incorrect')
+      $('#user_email').css("borderColor","red");
+      $('#user_password').css("borderColor","red");
     }
   });
 

@@ -23,7 +23,7 @@ function validation(email, password, confirm_password, name, nikname) {
       }
 
       // name
-      if (name.length < 6) {
+      if (name.length < 2) {
         valid_data.name = false;
       }
 

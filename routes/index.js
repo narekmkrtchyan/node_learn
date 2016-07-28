@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.get('/', 		require('./main_page').get);
 
   // login 
-  app.post('/test', require('./sign_in').post);
+  app.post('/sign_in', require('./sign_in').post);
 
   //sign up
   app.post('/sign_up', require('./sign_up').post);

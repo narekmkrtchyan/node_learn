@@ -1,33 +1,54 @@
+body, html{
+  height: 100%;
+  background-color: #cbcbcb;
+}
+#submit_msg{
+  background-color: cadetblue !important;
+  border-color: cadetblue !important;
+}
+.messiges{
+  padding: 4px;
+    border-radius: 16px;
+    background-color: cadetblue;
+    color: cyan;
+    display: block;
+    margin-bottom:7px;
+    padding-left: 40px;
+}
 .img_chat{  
   width: 175px;
-  margin-top: 7px;
+  margin-top: 57px;
+  border-radius: 78px;
+  border: 1px solid white;
 }
 
 .chat_area{
+  border-radius: 31px;
+  margin-top: 56px;
   overflow-x: auto;
   padding: 22px; 
-  border:1px solid black;
   height:75%;
   margin-bottom: 6px;
+  background-color: white;
 }
 
 #send_section {
   position: relative;
   bottom: -36px;
 }
-
+.chat_ss{
+  text-align: center;
+}
 #send_section .form-control {
   width: 250px;
   display: inline-block;
 }
 
-.container_chat{
-  border:1px solid black;
+.container_chat{ 
   height: 100%;
 }
 
 .chat {
-  border:1px solid black;
   margin-top:7px;
   margin-bottom: 7px;
   height: 95%;
@@ -38,5 +59,8 @@
 }
 
 .user_info{
-  margin-top: 11px;
+  margin-top:24px;
+}
+label{
+  margin-top: 26px;
 }
