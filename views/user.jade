@@ -8,6 +8,9 @@ html
     link(href='app/vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
     link(rel='stylesheet', type='text/css', href='app/css/chat.css')
   body
+    audio(preload='')
+      source(src='app/message_song/message.mp3', type='audio/mpeg')
+      | Your browser does not support the audio element.
     .container.container_chat
       .col-md-4.pull-left
         h3.user_info User Info

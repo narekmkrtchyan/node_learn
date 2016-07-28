@@ -9,5 +9,15 @@
 				}
 			}
 		}
+	},
+	"session" : {
+		"secret" 		: "NarekLinux",
+		"key" 			: "sid",
+		"cookie" 		: {
+			"path" 		: "",
+			"httpOnly" 	: true,
+			"maxAge" 	: null,
+			"signed" 	: true
+		}
 	}
 }

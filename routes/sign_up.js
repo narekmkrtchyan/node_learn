@@ -14,13 +14,13 @@ module.exports.post = function(req, res) {
     var new_user = new User(data);
     // TODO: Stugi vor nuyn mail-ov mard chlini
 
-    User.find({
+    User.findOne({
       email: data.email
     }, function(err, user) {
       if (err) return console.log(err);
       console.log(user);
 
-      if (user.length == 0) {
+      if (!user) {
         new_user.save(function(err) {
           if (err) return console.log(err);
           console.log('new user is a saved');
@@ -30,12 +30,6 @@ module.exports.post = function(req, res) {
         res.send({msg: 'email duplikat'})  ;    
       }
     });
-    //
-    // new_user.save(function(err) {
-    //   if (err) return console.log(err);
-    //   console.log('new user is a saved');
-    //   res.send({msg: 'user saved!'});
-    // });
   } else {
     res.send({error: result});
   }
