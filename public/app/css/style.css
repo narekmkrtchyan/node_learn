@@ -71,12 +71,12 @@ h3{
 }
 
 
-#div_registr input:required:invalid, input:focus:invalid,
+/*#div_registr input:required:invalid, input:focus:invalid,
 #div_login input:required:invalid, input:focus:invalid {
   background-image: url(http://s27.postimg.org/ttonbaj5b/invalid.png);
   background-repeat: no-repeat;
   
-}
+}*/
 
 #div_registr input:required:valid,
 #div_login input:required:valid {
@@ -100,4 +100,19 @@ h3{
 
 #div_login input:required:valid {
   background-position: 325px center;
+}
+.modal-content{
+  background: silver !important;
+  color: slategray !important;
+  border-color: #fff !important;
+}
+
+.btn-default{
+  border-color: #fff !important;
+  background-color: #ccc !important;
+  color: slategray !important;
+}
+.gender{
+  margin-left: -11px;
+  margin-top: 1px;
 }

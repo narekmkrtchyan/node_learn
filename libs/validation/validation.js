@@ -1,8 +1,9 @@
 module.exports = validation;
-function validation(email, password, confirm_password, name, nikname) {
+function validation(email, password, confirm_password, name, nikname,gender) {
 
   var args_length = arguments.length;
   var valid_data  = {};
+  console.log("sdgfsdfg",args_length,gender);
 
   // email
   if (!email_valid(email)) {
@@ -16,7 +17,7 @@ function validation(email, password, confirm_password, name, nikname) {
   if (args_length == 2) {
     return valid_data;
   } else {
-    if (args_length == 5) {
+    if (args_length == 6) {
       // confirm_password
       if (password !== confirm_password) {
         valid_data.confirm_password = false;
@@ -30,6 +31,11 @@ function validation(email, password, confirm_password, name, nikname) {
       // nikname
       if (nikname.length < 6) {
         valid_data.nikname = false;
+      }
+      // gender
+      if(gender != 'Male' && gender !='Female'){
+        console.log('narek',gender);
+        valid_data.gender = false;
       }
 
       return valid_data;

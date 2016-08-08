@@ -19,6 +19,10 @@ let schemaUsers = mongoose.Schema({
     required: true,
     unique: true,
     type: String,
+  },
+  gender:{
+    required:true,
+    type:String,
   }
 });
 

@@ -25,12 +25,33 @@ html
           div
             label(for='user_age') Age:
             span#user_age #{user_age}
-      .col-md-8.chat.pull-right
+          div
+            label(for='user_gender') Gender:
+            span#user_gender #{user_gender}
+      .col-md-8.chhat.pull-right
         h3.chat_ss Chat
         #area.chat_area
+          each message in messages
+            //- span.messiges #{message.sendTime.getFullYear() + ' - '} #{message.sendTime.getMonth()+1 + ' - '} #{message.sendTime.getDate()} #{message.sendTime.toLocaleTimeString()}  #{message.sender + ":: "} #{message.message}
+            .col-lg-8
+              .panel-body
+                ul.chat
+                  li.left.clearfix
+                    span.chat-img.pull-left
+                      img.img-circle(src='http://placehold.it/50/55C1E7/fff&text=U', alt='User Avatar')
+                    .chat-body.clearfix
+                      .header
+                        strong.primary-font #{message.sender}
+                      br
+                      small.text-muted
+                        span.glyphicon.glyphicon-time.text-danger
+                        span
+                          font(color='red') #{message.sendTime.getFullYear() + ' - '} #{message.sendTime.getMonth()+1 + ' - '} #{message.sendTime.getDate()} #{message.sendTime.toLocaleTimeString()}
+                    p #{message.message}
         #send_section
-          input#messige.form-control.pull-right(type='text', name='')
           input#submit_msg.btn.ntn-lg.btn-primary.pull-right(type='submit',  name='Send')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+          textarea#messige.form-control.pull-right(type='text', name='')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
     script(src='app/vendor/bootstrap/js/bootstrap.min.js')
+    script(src="https://cdn.socket.io/socket.io-1.4.5.js")
     script(src='app/js/script.js')

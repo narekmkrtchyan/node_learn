@@ -1,11 +1,18 @@
 (function() {
 
-  $('#sign_in').click(function(e){
+  $('.sign_in').click(function(e){
+    $('#myModal').modal('hide');
+    $('.confirm_password').val('');
+    $('.name').val('');
+    $('.password').val('');
+    $('.loginemail').val('');
+    $('.nikname').val('');
     $( "#div_registr" ).fadeOut( 300, function() {  
       $("#div_login").fadeIn(300);
     })
     return false;
   });
+
   $('#user_email').click(function(e){
     $('#user_email').css("borderColor","#fff");
   })

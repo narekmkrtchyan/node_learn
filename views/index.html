@@ -5,12 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>task-1</title>
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
     <link href="app/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="app/css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
@@ -85,6 +82,24 @@
                     </div>
                   </div>
 
+                  <div class="form-group">
+                    <label class="control-label col-sm-3 gender">Gender</label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" id="femaleRadio" value="Female" name="gender" class="gender">Female
+                                </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="radio-inline">
+                                    <input type="radio" id="maleRadio" value="Male" name="gender" class="gender">Male
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
                   <div class="form-group ">
                     <button type="submit" class="btn btn-primary btn-lg btn-block login-button " id="register" >Register</button>
                     <div class="modal fadeIn" id="myModal" role="dialog">
@@ -92,13 +107,13 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">dadadam</h4>
+                            <h4 class="modal-title">Data Saved</h4>
                           </div>
                           <div class="modal-body">
-                            <p>data saved</p>
+                            <p>Account creation success!!!</p>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default sign_in" data-dismiss="modal">Close</button>
                           </div>
                         </div>
                         
@@ -106,7 +121,7 @@
                     </div>
                   </div>
                 
-                <button class="btn ntn-lg  btn-primary" id="sign_in">sign_in</button>
+                <button class="btn ntn-lg  btn-primary sign_in" >sign_in</button>
               </div>
            
           </div>
@@ -118,12 +133,10 @@
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <!--  -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!--  -->
 
     <script src="app/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="app/vendor/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src='app/js/sign_in/sign_in.js'></script>
     <script type="text/javascript" src='app/js/sign_up/sign_up.js'></script>
   </body>

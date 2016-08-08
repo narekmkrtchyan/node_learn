@@ -4,6 +4,7 @@ body, html{
 }
 
 #submit_msg{
+  margin-left: 15px !important;
   background-color: cadetblue !important;
   border-color: cadetblue !important;
 }
@@ -56,7 +57,7 @@ body, html{
   height: 100%;
 }
 
-.chat {
+.chhat {
   margin-top:7px;
   margin-bottom: 7px;
   height: 95%;
@@ -64,6 +65,8 @@ body, html{
 
 #messige{
   margin-bottom: 6px;
+  height: 35px;
+  resize: none;
 }
 
 .user_info{
@@ -72,4 +75,47 @@ body, html{
 
 label{
   margin-top: 26px;
+}
+/**/
+.chat
+{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chat li
+{
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+  margin-left: 60px;
+}
+
+.chat li.right .chat-body
+{
+  margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+  margin: 0;
+  color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+  margin-right: 5px;
+}
+.header{
+      margin-bottom: -14px;
+}
+.chat p{
+      margin-left: 60px;
+
 }
