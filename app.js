@@ -9,7 +9,7 @@ const cookieParser    = require('cookie-parser');
 const favicon         = require('serve-favicon');
 const config          = require('./config');
 const app             = express();
-const Message         = require('./models/message').Message;
+
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -19,8 +19,6 @@ app.use(cookieParser());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
-
-
 
 // "session": "start"
 const sessionStore = require('./libs/db/sessionStore');
@@ -55,19 +53,5 @@ server.listen(process.env.PORT || config.get('port'), function() {
     }
   });
 });
-var io = require('socket.io').listen(server);
-io.set('origins','localhost:*');
-io.sockets.on('connection',function(socket){
-  socket.on('send_message', function(data) {
-    //pti haskananq ove
-    var message = new  Message({
-      message:data.message,
-      sendTime:new Date(),
-      sender:'pix',
-    });
-    message.save(function(err){
-      if(err) return console.log(err);  
-      socket.broadcast.emit('new_message', {message: data.message});
-    });
-  })
-});
+
+require('./socket')(server);

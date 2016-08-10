@@ -34,7 +34,6 @@ function validation(email, password, confirm_password, name, nikname,gender) {
       }
       // gender
       if(gender != 'Male' && gender !='Female'){
-        console.log('narek',gender);
         valid_data.gender = false;
       }
 

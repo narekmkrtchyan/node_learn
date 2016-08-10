@@ -22,6 +22,9 @@ let schemaUsers = mongoose.Schema({
   },
   gender:{
     required:true,
+    type: String,
+  },
+  img_url:{
     type:String,
   }
 });

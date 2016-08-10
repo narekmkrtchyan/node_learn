@@ -7,10 +7,11 @@ module.exports.post = function(req, res) {
   var validation = require('../libs/validation/validation');
   var data       = req.body;
   var result = validation(data.email, data.password, data.confirm_password,
-                          data.name, data.nikname,data.gender);
+                          data.name, data.nikname, data.gender);
   console.log('aaaaaaa',result);
   if (Object.keys(result).length == 0) {
     console.log(data);
+
     var new_user = new User(data);
     // TODO: Stugi vor nuyn mail-ov mard chlini
 

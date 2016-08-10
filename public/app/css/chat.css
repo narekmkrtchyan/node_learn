@@ -24,6 +24,24 @@ body, html{
   margin-top: 57px;
   border-radius: 78px;
   border: 1px solid white;
+  cursor: pointer;
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+.img_chat:hover {
+  -webkit-filter: blur(5px);
+}
+
+.img_chat:befor {
+  content: 'assssssssss'
+}
+
+.img_chat:hover:befor {
+  content: "asdasd"
 }
 
 .chat_area{
@@ -71,10 +89,12 @@ body, html{
 
 .user_info{
   margin-top:24px;
+  margin-left: 35px;
 }
 
 label{
   margin-top: 26px;
+  margin-left: 35px;
 }
 /**/
 .chat
@@ -118,4 +138,7 @@ label{
 .chat p{
       margin-left: 60px;
 
+}
+.hide {
+  display: none;
 }

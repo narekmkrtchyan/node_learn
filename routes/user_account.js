@@ -10,6 +10,7 @@ module.exports.get = function(req, res) {
     name: 1,
     nikname: 1,
     gender:1,
+    img_url:1,
     _id: 0,    
   }, function(err, user) {
     if (err) return console.log(err);
@@ -25,6 +26,7 @@ module.exports.get = function(req, res) {
             user_nikname: user.nikname,
             user_age:     23,
             user_gender:  user.gender,
+            img_url:      user.img_url,
             messages: messages
           });
           

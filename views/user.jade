@@ -15,7 +15,17 @@ html
       .col-md-4.pull-left
         h3.user_info User Info
         .img_border
-          img.img-responsive.img_chat(src='app/img/nkar.jpg')
+          if img_url
+            img.img-responsive.img_chat(src='app/'+img_url)
+          else
+            if user_gender == "Male"
+              img.img-responsive.img_chat(src='app/img/male.jpg')
+            else
+              img.img-responsive.img_chat(src='app/img/female.jpg') 
+          form(method='post' action='/image_upload' enctype="multipart/form-data")
+            input(type='file', name='myimage')
+            input(type='submit', name='submit', value='submit')
+          p.change_image.hide Click to change Image
           div
             label(for='user_name') Name:
             span#user_name #{user_name}

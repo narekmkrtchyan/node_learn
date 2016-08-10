@@ -1,3 +1,6 @@
+const multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
+
 module.exports = function(app) {
 
   // main page
@@ -11,5 +14,7 @@ module.exports = function(app) {
 
   // user account
   app.get('/user', require('./user_account').get);
+  
+  app.post('/image_upload', upload.single('myimage'), require('./image_upload').post);
     
 }
