@@ -6,70 +6,62 @@ var   async           = require('async');
 var   config          = require('../config');
 var   sessionStore    = require('../libs/db/sessionStore');
 var   User            = require('../models/user').User;
+const cookieParser    = require('cookie-parser');
 
 
-module.exports = function(server){
+module.exports = function(server) {
   var io = require('socket.io').listen(server);
-  io.set('origins','localhost:*');
-  io.set('logger',log);
+  io.set('origins', 'localhost:*');
+  var userDate = {};
+  //io.set('logger',log);
+  // 
+  io.set('authorization', function(handshake, callback) {
+    handshake.cookie  =   cookie.parse(handshake.headers.cookie || '');
+    var sidCookie     =   handshake.cookie[config.get('session:key')];
+    var sid = cookieParser.signedCookie(sidCookie, config.get('session:secret'));
+    // console.log('aaaaaaaaaa',sid);
+    sessionStore.load(sid, function(err, session) {
+      if(err) return next(err);
+      if(arguments.length == 0) return new HttpError(401, 'no session'); //test
+      if(!session) {
+        return console.log(401, 'no session');
+      }
+      handshake.session = session;
+      if(!session.user) {
+        log.debug("session anonymos");
+        return console.log(500, 'server problem');
+      };
+      User.findOne({
+        _id: session.user
+      }, function(err, user) {
+        if(!user) {
+          log.debug('anonymos session');
+          return next(500, 'anonymos session');
+        };
+        handshake.user = user;
+        //console.log('bbb',userDate);
+        userDate.user = user;
+        callback(null, user);
+      });
+      //console.log('ssss',userDate)
+    });
+  });
 
-  // io.set('authorization', function(handshake,callback){
-  //   async.waterfall([
-  //     function(callback){
+io.sockets.on('connection',function(socket){
 
-  //       handshake.cokies=cokie.parse(handshake.headers.cokie || '');
-  //       var sidCookie = handshake.cokies[config.get('session:key')];
-  //       var sid = connect.utils.parseSignedCookie(sidCookie,config.get('session:secret'));
+    var username = userDate.user.name;
+    socket.broadcast.emit('join', username);
 
-  //       LoadSession(sid,callback);
-
-  //     },
-  //     function(session,callback){
-  //       if(!session){
-  //         callback(console.log(401,"No session"));
-  //       }
-  //       handshake.session=session;
-  //       LoadUser(session,callback);
-  //     },
-
-  //     function(user,callback){
-  //       if(!user){
-  //         callback(console.log(403,"Anonymous session may not connect")); 
-  //       }
-  //       handshake.user=user;
-  //       callback(null);
-  //     }
-
-  //   ],function(err){
-  //     if(!err){
-  //       return callback(null,true);
-  //     }
-  //     if(err ){
-  //       return callback(null,false);
-  //     }
-
-  //     callback(err);
-  //   });
-  // });
-
-
-  io.sockets.on('connection',function(socket){
-
-    // var username =socket.handshake.user.get('username');
-    // socket.broadcast.emit('join',username);
-
-    //console.log('sddddddddddddddd',username);
     socket.on('send_message', function(data,cb) {
       console.log('data');
       var message = new  Message({
         message:data.message,
         sendTime:new Date(),
-        sender:'pix',
+        sender:username,
       });
       message.save(function(err){
         if(err) return console.log(err);  
-        socket.broadcast.emit('new_message', {message: data.message});
-        cb('123');
+        socket.broadcast.emit('new_message', {message: data.message, username: username});
       });
     })
   });

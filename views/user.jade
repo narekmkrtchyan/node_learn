@@ -41,6 +41,7 @@ html
       .col-md-8.chhat.pull-right
         h3.chat_ss Chat
         #area.chat_area
+          input(type="submit",name="submit",id="histri_message")
           each message in messages
             //- span.messiges #{message.sendTime.getFullYear() + ' - '} #{message.sendTime.getMonth()+1 + ' - '} #{message.sendTime.getDate()} #{message.sendTime.toLocaleTimeString()}  #{message.sender + ":: "} #{message.message}
             .col-lg-8

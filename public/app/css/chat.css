@@ -142,3 +142,6 @@ label{
 .hide {
   display: none;
 }
+#histri_message{
+  display: none;
+}

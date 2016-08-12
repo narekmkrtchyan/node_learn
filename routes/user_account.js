@@ -18,9 +18,12 @@ module.exports.get = function(req, res) {
     if (user) {
       Message
         .find()
+        .sort('-sendTime')
         .limit(50)
         .exec(function(err,messages){
-          if(err) return console.log(err);
+          //console.log('asas',messages);
+          messages.reverse();
+          if(err) return console.log('dasfa',err);
           res.render('user', {
             user_name:    user.name,
             user_nikname: user.nikname,
@@ -31,9 +34,6 @@ module.exports.get = function(req, res) {
           });
           
         })
-
-
-
     } else {
       res.end('error!!!!!!!!!!');
     }
