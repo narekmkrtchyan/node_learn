@@ -4,7 +4,7 @@ var upload = multer({ dest: 'uploads/' });
 module.exports = function(app) {
 
   // main page
-  app.get('/', 		require('./main_page').get);
+  app.get('/',    require('./main_page').get);
 
   // login 
   app.post('/sign_in', require('./sign_in').post);
@@ -17,4 +17,5 @@ module.exports = function(app) {
   
   app.post('/image_upload', upload.single('myimage'), require('./image_upload').post);
     
+  app.get('/getHistory',require('./history').get);
 }

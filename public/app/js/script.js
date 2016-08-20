@@ -18,14 +18,25 @@ $("#area").scroll(function(){
     $('#histri_message').css("display",'none');
   }
 })
-$('#histri_message').click(functiom(){
-  
-})
-// if(($("#area").scrollTop()) == 0){
-//   alert(1);
-// }
 
+$('#histri_message').click(function(e){
+  var lastTime = $($("#area").find('li')[0]).find('font')[0].getAttribute('name');
+  console.log('meker',lastTime);
+    $.ajax({
+      url: '/getHistory',
+      method: 'get',
+      data: {
+        lastTime: lastTime
+      },
+      success: function(data) {
+        var messages = data.old_messages;
+        for (var i = 0; i < messages.length; i++) {
+          render_old_messages(messages[i]);
+        }
+      }
+    })
 
+  });
 $('.img_chat').click(function() {
   $('.change_image').addClass('hide');
   $('input.hide').trigger('click');
@@ -39,10 +50,11 @@ $('.img_chat').mouseout(function() {
   $('.change_image').addClass('hide');
 })
 
-$('#messige').keypress(function(e){
+$('#messige').keyup(function(e){
   if (event.which == 13) {
-    my_message($('#messige').val());
+     my_message($('#messige').val());
     $('#messige').val('');
+    
     e.stopPropagation();
   }
 });
@@ -61,9 +73,6 @@ $(document).ready(function($) {
 var socket = io.connect('');
 
 socket
-  // .on('leave',function(){
-  //   printStatus(username+ "siktir exav chatic");
-  // })
   .on('join',function(username){
     USER_NAME = username;
     var messige_info ="is online.";
@@ -73,11 +82,6 @@ socket
      var messige_info ="Conected.";
      printStatus(messige_info);
    })
-  // .on('disconnect',function(){
-  //   printStatus('kapn korcrac e');
-  //   form.off('submit',sendMessage);
-  //   input.prop('disabled',true);
-  // })
 
 function printStatus(name,status){
   var date = new Date();
@@ -156,7 +160,7 @@ function my_message(msg) {
       '</div>'
     );
     socket.emit('send_message', {message: msg});
-    $('audio')[0].play();
+    //$('audio')[0].play();
     my_scroll();
   }
 }
@@ -182,9 +186,31 @@ function friend_message(msg, username) {
       '</div>' +
     '</div>'
   );
-  $('audio')[0].play();
+  //$('audio')[0].play();
   $("#messige").val('');
   my_scroll();
+}
+
+function render_old_messages(message) {
+  $( "#area" ).prepend( 
+    '<div class="col-lg-8">'+
+      '<div class="panel-body">' +
+        '<ul class="chat">'+
+          '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle"/></span>'+
+            '<div class="chat-body clearfix">'+
+              '<div class="header">' +
+                '<strong class="primary-font">' + message.sender + '</strong>' +
+              '</div><br/>' +
+              '<small class="text-muted">' +
+                '<span class="glyphicon glyphicon-time text-danger"></span>' +
+                '<span><font color="red" name='+message.sendTime+'>' + message.sendTime +'</font></span></small>' +
+            '</div>' +
+            '<p>' + message.message + '</p>' +
+          '</li>' +
+        '</ul>' +
+      '</div>' +
+    '</div>'
+  );
 }
 
 socket.on('new_message', function(data) {

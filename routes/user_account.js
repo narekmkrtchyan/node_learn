@@ -19,7 +19,7 @@ module.exports.get = function(req, res) {
       Message
         .find()
         .sort('-sendTime')
-        .limit(50)
+        .limit(5)
         .exec(function(err,messages){
           //console.log('asas',messages);
           messages.reverse();
@@ -30,7 +30,7 @@ module.exports.get = function(req, res) {
             user_age:     23,
             user_gender:  user.gender,
             img_url:      user.img_url,
-            messages: messages
+            messages: messages,
           });
           
         })

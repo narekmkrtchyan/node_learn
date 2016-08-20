@@ -20,7 +20,17 @@
     $('#user_password').css("borderColor","#fff");
   })
   
-  $('#login_button').click(function(e) {
+  $('#login_button').click(function(e){
+    sign_in();
+  });
+
+  $('#user_password').keypress(function(e){
+    if (event.which == 13) {
+      sign_in();
+    }
+  });
+
+  function sign_in(){
     var user_email    = $('#user_email').val();
     var user_password = $('#user_password').val();
 
@@ -49,8 +59,7 @@
       $('#user_email').css("borderColor","red");
       $('#user_password').css("borderColor","red");
     }
-  });
-
+  }
   var api={
 
     validation: function(email, password) {
