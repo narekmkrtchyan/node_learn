@@ -48,9 +48,11 @@ module.exports = function(server) {
   });
 
 io.sockets.on('connection',function(socket){
-
+    var id       = userDate.user._id;
+    var img_url  = userDate.user.img_url;
+    var gender   = userDate.user.gender
     var username = userDate.user.name;
-    socket.broadcast.emit('join', username);
+    socket.broadcast.emit('join', username,gender,img_url);
 
     socket.on('send_message', function(data,cb) {
       console.log('data');
@@ -58,10 +60,13 @@ io.sockets.on('connection',function(socket){
         message:data.message,
         sendTime:new Date(),
         sender:username,
+        id:id,
+        gender:gender,
+        img_url:img_url,
       });
       message.save(function(err){
         if(err) return console.log(err);  
-        socket.broadcast.emit('new_message', {message: data.message, username: username});
+        socket.broadcast.emit('new_message', {message: data.message, username: username,gender:gender,img_url:img_url});
       });
     })
   });

@@ -12,6 +12,15 @@ let schemaMessages = mongoose.Schema({
   },
   sender: {
     type: String,
+  },
+  id:{
+    type:String,
+  },
+  gender:{
+    type:String,
+  },
+  img_url:{
+    type:String,
   }
 });
 

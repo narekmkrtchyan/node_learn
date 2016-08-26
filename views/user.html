@@ -9,10 +9,18 @@
     <link rel="stylesheet" type="text/css" href="app/css/chat.css">
   </head>
   <body>
+    <audio preload="">
+      <source src="app/message_song/message.mp3" type="audio/mpeg">Your browser does not support the audio element.
+    </audio>
     <div class="container container_chat">
-      <div class="col-md-4 pull-left"><img src="app/img/nkar.jpg" class="img-responsive img_chat">
-        <div>
-          <p class="user_info">User Info</p>
+      <div class="col-md-4 pull-left">
+        <h3 class="user_info">User Info</h3>
+        <div class="img_border"><img src="app/img/female.jpg" class="img-responsive img_chat">
+          <form method="post" action="/image_upload" enctype="multipart/form-data">
+            <input type="file" name="myimage">
+            <input type="submit" name="submit" value="submit">
+          </form>
+          <p class="change_image hide">Click to change Image</p>
           <div>
             <label for="user_name">Name:</label><span id="user_name"></span>
           </div>
@@ -22,19 +30,39 @@
           <div>
             <label for="user_age">Age:</label><span id="user_age"></span>
           </div>
+          <div>
+            <label for="user_gender">Gender:</label><span id="user_gender"></span>
+          </div>
         </div>
       </div>
-      <div class="col-md-8 chat pull-right">
-        <h3 class="pull-right">Chat</h3>
-        <div id="area" class="chat_area"></div>
+      <div class="col-md-8 chhat pull-right">
+        <h3 class="chat_ss">Chat</h3>
+        <div id="area" class="chat_area">
+          <input type="submit" name="submit" id="histri_message">
+          <each>
+            <div class="col-lg-8">
+              <div class="panel-body">
+                <ul class="chat">
+                  <li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle"></span>
+                    <div class="chat-body clearfix">
+                      <div class="header"><strong class="primary-font"></strong></div><br><small class="text-muted"><span class="glyphicon glyphicon-time text-danger"></span><span><font color="red" name="undefined">   </font></span></small>
+                    </div>
+                    <p></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </each>
+        </div>
         <div id="send_section">
-          <input id="messige" type="text" name="" class="form-control pull-right">
-          <input type="submit" onclick="myFunction()" name="Send" class="btn ntn-lg btn-primary pull-right">
+          <input id="submit_msg" type="submit" name="Send" class="btn ntn-lg btn-primary pull-right">
+          <textarea id="messige" type="text" name="" class="form-control pull-right"></textarea>
         </div>
       </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="app/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="app/js/script.js"></script>
   </body>
 </html>

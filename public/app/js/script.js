@@ -2,17 +2,22 @@ var USER_NAME;
 
 console.log('%c Ostanavites vasha destvie!!!!!!!!', 'color: red; font-size: 60px');
 
+$('.special.cards .image').dimmer({
+  on: 'hover'
+});
+
 function my_scroll() {
   $("#area")
     .animate(
       {
-        scrollTop: $('#area').prop("scrollHeight")
+        scrollTop: $('#area').prop('scrollHeight')
       }, 1500
     );
 }
 setTimeout(my_scroll());
 $("#area").scroll(function(){
   if($("#area").scrollTop() == 0){
+    //console.log('1');
     $('#histri_message').css("display",'block');
   }else{
     $('#histri_message').css("display",'none');
@@ -20,7 +25,7 @@ $("#area").scroll(function(){
 })
 
 $('#histri_message').click(function(e){
-  var lastTime = $($("#area").find('li')[0]).find('font')[0].getAttribute('name');
+  var lastTime = $("#area").find('u')[0].getAttribute('name');
   console.log('meker',lastTime);
     $.ajax({
       url: '/getHistory',
@@ -33,6 +38,7 @@ $('#histri_message').click(function(e){
         for (var i = 0; i < messages.length; i++) {
           render_old_messages(messages[i]);
         }
+
       }
     })
 
@@ -52,7 +58,9 @@ $('.img_chat').mouseout(function() {
 
 $('#messige').keyup(function(e){
   if (event.which == 13) {
-     my_message($('#messige').val());
+    var my_image_url = $('#image').attr('src');
+    var message      = $('#messige').val()
+    my_message(my_image_url,message);
     $('#messige').val('');
     
     e.stopPropagation();
@@ -60,7 +68,9 @@ $('#messige').keyup(function(e){
 });
 
 $('#submit_msg').click(function(e){
-  my_message($('#messige').val());
+  var my_image_url = $('#image').attr('src');
+  var message      = $('#messige').val()
+  my_message(my_image_url,message);
   $('#messige').val('');
   e.stopPropagation()
 })
@@ -73,91 +83,84 @@ $(document).ready(function($) {
 var socket = io.connect('');
 
 socket
-  .on('join',function(username){
+  .on('join',function(username,gender,img_url){
+    console.log('zzzzzzzzzz',gender);
     USER_NAME = username;
+    var gender = gender;
     var messige_info ="is online.";
-    printStatus(username ,messige_info);
+    var img_url = img_url;
+    printStatus(username ,messige_info,gender,img_url);
   })
    .on('connect',function(){
      var messige_info ="Conected.";
      printStatus(messige_info);
    })
 
-function printStatus(name,status){
+function printStatus(name,status,gender,img_url){
+  console.log('name',name,'status',status,'img_url',img_url,'gender',gender);
+
+  if(img_url){
+    var url =img_url;
+  }
+  else
+    if(!img_url && gender =='Male'){
+      var url ='img/male.jpg';
+    }
+    else
+      if(!img_url && gender =='Female'){
+        var url ='img/female.jpg';
+      }
+
   var date = new Date();
   if(arguments.length < 2){
+  var my_image_url = $('#image').attr('src');
   $( "#area" ).append( 
-    '<div class="col-lg-8">'+
-      '<div class="panel-body">' +
-        '<ul class="chat">'+
-          '<li class="left clearfix">'+
-            '<span class="chat-img pull-left">'+
-              '<img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle"/>'+
-            '</span>'+
-            '<div class="chat-body clearfix">'+
-              '<div class="header"><strong class="primary-font"> uvajaemie </strong></div><br/>'+
-              '<small class="text-muted">'+
-                '<span class="glyphicon glyphicon-time text-danger"></span>'+
-                '<span><font color="red">' + date.toLocaleTimeString() +'<font></span>'+
-              '</small>' +
-            '</div>' +
-            '<p>' + name + '</p>' +
-          '</li>' +
-        '</ul>' +
-      '</div>' +
-    '</div>'
+    '<div class="ui horizontal divider">'+
+      '<span class="ui medium circular image span_img">'+
+        '<img src="'+my_image_url+'" class="">'+
+      '</span>'+
+    '</div>'+
+    '<span>'+name+'</span>'+
+    '<br><br>'+
+    '<i class="wait icon wait_clock"></i><u style="color:red">'+date.toLocaleTimeString()+'</u>'+
+    '<hr>'
   );
   my_scroll();
   }
   else{
     $( "#area" ).append( 
-      '<div class="col-lg-8">'+
-        '<div class="panel-body">' +
-          '<ul class="chat">'+
-            '<li class="left clearfix">'+
-              '<span class="chat-img pull-left">'+
-                '<img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle"/>'+
-              '</span>'+
-              '<div class="chat-body clearfix">'+
-                '<div class="header"><strong class="primary-font">'+ name +'</strong></div><br/>'+
-                '<small class="text-muted">'+
-                  '<span class="glyphicon glyphicon-time text-danger"></span>'+
-                  '<span><font color="red">' + date.toLocaleTimeString() +'<font></span>'+
-                '</small>' +
-              '</div>' +
-              '<p>' + status + '</p>' +
-            '</li>' +
-          '</ul>' +
-        '</div>' +
-      '</div>'
+    
+
+      '<div class="ui horizontal divider">'+
+      '<span class="ui medium circular image span_img">'+
+        '<img src="app/'+url+' " class="">'+
+      '</span>'+
+    '</div>'+
+    '<span>'+status+'</span>'+
+    '<br><br><span>'+ name+'</span>'+
+    '<i class="wait icon wait_clock"></i><u style="color:red">'+date.toLocaleTimeString()+'</u>'+
+    '<hr>'
     );
     my_scroll();
   }
 }
 
 
-function my_message(msg) {
+function my_message(img_url,msg) {
   var date = new Date();
   if ($.trim(msg) != '') {
     $( "#area" ).append( 
-      '<div class="col-lg-8">'+
-        '<div class="panel-body">' +
-          '<ul class="chat">'+
-            '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle"/></span>'+
-              '<div class="chat-body clearfix">'+
-                '<div class="header">' +
-                  '<strong class="primary-font">' + $('#user_name').html() + '</strong>' +
-                '</div><br/>' +
-                '<small class="text-muted">' +
-                  '<span class="glyphicon glyphicon-time text-danger"></span>' +
-                  '<span><font color="red">' + date.getFullYear() + ' - ' + (date.getMonth() + 1 )+ ' - '+ date.getDate()+ "  " + date.toLocaleTimeString() +'</font></span>'+
-                '</small>' +
-              '</div>' +
-              '<p>' + msg + '</p>' +
-            '</li>' +
-          '</ul>' +
-        '</div>' +
-      '</div>'
+      
+      '<div class="ui horizontal divider">'+
+      '<span class="ui medium circular image span_img">'+
+        '<img src="'+img_url+'" class="">'+
+      '</span>'+
+    '</div>'+
+    '<span>'+msg+'</span>'+
+    '<br><br><span>'+ $('#user_name').html()+'</span>'+
+    '<i class="wait icon wait_clock"></i><u style="color:red">'+date.getFullYear() + ' - ' + (date.getMonth() + 1 )+ ' - '+ date.getDate()+ "  " + date.toLocaleTimeString()+'</u>'+
+    '<hr>'
+
     );
     socket.emit('send_message', {message: msg});
     //$('audio')[0].play();
@@ -165,26 +168,30 @@ function my_message(msg) {
   }
 }
 
-function friend_message(msg, username) {
+function friend_message(msg, username,gender,img_url) {
   var date = new Date();
+  if(img_url){
+    var url =img_url;
+  }
+  else
+    if(!img_url && gender =='Male'){
+      var url ='img/male.jpg';
+    }
+    else
+      if(!img_url && gender =='Female'){
+        var url ='img/female.jpg';
+      }
   $( "#area" ).append( 
-    '<div class="col-lg-8">'+
-      '<div class="panel-body">' +
-        '<ul class="chat">'+
-          '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle"/></span>'+
-            '<div class="chat-body clearfix">'+
-              '<div class="header">' +
-                '<strong class="primary-font">' + username + '</strong>' +
-              '</div><br/>' +
-              '<small class="text-muted">' +
-                '<span class="glyphicon glyphicon-time text-danger"></span>' +
-                '<span><font color="red">' + date.getFullYear() + ' - ' + (date.getMonth() + 1 )+ ' - '+ date.getDate()+ "  " + date.toLocaleTimeString() +'</font></span></small>' +
-            '</div>' +
-            '<p>' + msg + '</p>' +
-          '</li>' +
-        '</ul>' +
-      '</div>' +
-    '</div>'
+   
+    '<div class="ui horizontal divider">'+
+      '<span class="ui medium circular image span_img">'+
+        '<img src="app/'+url+' " class="">'+
+      '</span>'+
+    '</div>'+
+    '<span>'+msg+'</span>'+
+    '<br><br><span>'+ username+'</span>'+
+    '<i class="wait icon wait_clock"></i><u  style="color:red">'+date.getFullYear() + ' - ' + (date.getMonth() + 1 )+ ' - '+ date.getDate()+ "  " + date.toLocaleTimeString()+'</u>'+
+    '<hr>'
   );
   //$('audio')[0].play();
   $("#messige").val('');
@@ -192,28 +199,47 @@ function friend_message(msg, username) {
 }
 
 function render_old_messages(message) {
+  console.log(message);
+  if(message.userdata.img_url){
+    var url =message.userdata.img_url;
+  }
+  else
+    if(!message.userdata.img_url && message.gender =='Male'){
+      var url ='img/male.jpg';
+    }
+    else
+      if(!message.img_url && message.userdata.gender =='Female'){
+        var url ='img/female.jpg';
+      }
   $( "#area" ).prepend( 
-    '<div class="col-lg-8">'+
-      '<div class="panel-body">' +
-        '<ul class="chat">'+
-          '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle"/></span>'+
-            '<div class="chat-body clearfix">'+
-              '<div class="header">' +
-                '<strong class="primary-font">' + message.sender + '</strong>' +
-              '</div><br/>' +
-              '<small class="text-muted">' +
-                '<span class="glyphicon glyphicon-time text-danger"></span>' +
-                '<span><font color="red" name='+message.sendTime+'>' + message.sendTime +'</font></span></small>' +
-            '</div>' +
-            '<p>' + message.message + '</p>' +
-          '</li>' +
-        '</ul>' +
-      '</div>' +
-    '</div>'
+    
+   '<div class="ui horizontal divider">'+
+      '<span class="ui medium circular image span_img">'+
+        '<img src="app/'+url+' " class="">'+
+      '</span>'+
+    '</div>'+
+    '<span>'+message.message+'</span>'+
+    '<br><br><span>'+ message.userdata.name+'</span>'+
+    '<i class="wait icon wait_clock"></i><u style="color:red" name='+ message.sendTime+'>'+new Date(message.sendTime).getFullYear() + '-' + ( new Date(message.sendTime).getMonth() + 1 ) + '-' + new Date(message.sendTime).getDate() +' ' +new Date(message.sendTime).toLocaleTimeString()+'</u>'+
+    '<hr>' 
   );
 }
 
 socket.on('new_message', function(data) {
-  console.log('asdasd');
-  friend_message(data.message, data.username);
+  console.log('data',data);
+  friend_message(data.message, data.username,data.gender,data.img_url);
 })
+
+// function img_url(gender,img_url){
+//   if(img_url){
+//     var url =img_url;
+//   }
+//   else
+//     if(!img_url && gender =='Male'){
+//       var url ='img/male.jpg';
+//     }
+//     else
+//       if(!img_url && gender =='Female'){
+//         var url ='img/female.jpg';
+//       }
+// }

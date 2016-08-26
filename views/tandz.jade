@@ -1,0 +1,68 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title task-1
+    link(href='app/vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', type='text/css', href='app/css/chat.css')
+  body
+    audio(preload='')
+      source(src='app/message_song/message.mp3', type='audio/mpeg')
+      | Your browser does not support the audio element.
+    .container.container_chat
+      .col-md-4.pull-left
+        h3.user_info User Info
+        .img_border
+          if img_url
+            img.img-responsive.img_chat(src='app/'+img_url)
+          else
+            if user_gender == "Male"
+              img.img-responsive.img_chat(src='app/img/male.jpg')
+            else
+              img.img-responsive.img_chat(src='app/img/female.jpg') 
+          form(method='post' action='/image_upload' enctype="multipart/form-data")
+            input(type='file', name='myimage')
+            input(type='submit', name='submit', value='submit')
+          p.change_image.hide Click to change Image
+          div
+            label(for='user_name') Name:
+            span#user_name #{user_name}
+          div
+            label(for='user_nikname') Nikname:
+            span#user_nikname #{user_nikname}
+          div
+            label(for='user_age') Age:
+            span#user_age #{user_age}
+          div
+            label(for='user_gender') Gender:
+            span#user_gender #{user_gender}
+      .col-md-8.chhat.pull-right
+        h3.chat_ss Chat
+        #area.chat_area
+          input(type="submit",name="submit",id="histri_message")
+          each message in messages
+            //- span.messiges #{message.sendTime.getFullYear() + ' - '} #{message.sendTime.getMonth()+1 + ' - '} #{message.sendTime.getDate()} #{message.sendTime.toLocaleTimeString()}  #{message.sender + ":: "} #{message.message}
+            .col-lg-8
+              .panel-body
+                ul.chat
+                  li.left.clearfix
+                    span.chat-img.pull-left
+                      img.img-circle(src='http://placehold.it/50/55C1E7/fff&text=U', alt='User Avatar')
+                    .chat-body.clearfix
+                      .header
+                        strong.primary-font #{message.sender}
+                      br
+                      small.text-muted
+                        span.glyphicon.glyphicon-time.text-danger
+                        span
+                          font(color='red', name='#{message.sendTime}') #{message.sendTime.getFullYear() + ' - '} #{message.sendTime.getMonth()+1 + ' - '} #{message.sendTime.getDate()} #{message.sendTime.toLocaleTimeString()}
+                    p #{message.message}
+        #send_section
+          input#submit_msg.btn.ntn-lg.btn-primary.pull-right(type='submit',  name='Send')
+          textarea#messige.form-control.pull-right(type='text', name='')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+    script(src='app/vendor/bootstrap/js/bootstrap.min.js')
+    script(src="https://cdn.socket.io/socket.io-1.4.5.js")
+    script(src='app/js/script.js')
